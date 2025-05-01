@@ -1,3 +1,4 @@
+
 import os
 import glob
 import torch
@@ -37,10 +38,10 @@ def compute_rolling_correlation(stock_files, date_idx):
     for file in stock_files:
         df = pd.read_csv(file, parse_dates=["date"])
         df = df.set_index("date")
-       
+        
         # Ensure we only use selected features
         df = df[selected_features]
-       
+        
         # Extract past 22 timesteps for correlation calculation
         if all_dates[date_idx] in df.index:
             past_22_days = df.loc[all_dates[date_idx-22:date_idx]].values.flatten()
